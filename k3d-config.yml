@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://github.com/k3d-io/k3d/raw/main/pkg/config/v1alpha5/schema.json
+---
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: knativetest
+servers: 1
+agents: 2
+registries:
+  create:
+    name: registry.knativetest.localhost
+    host: 0.0.0.0
+    hostPort: "5000"
+options:
+  k3d:
+    wait: true
+    timeout: 120s
+    disableLoadbalancer: true
+    disableImageVolume: false
+    disableRollback: false
+  kubeconfig:
+    updateDefaultKubeconfig: false
+    switchCurrentContext: true
+  runtime:
+    labels:
+      - label: k3d=knativetest
+        nodeFilters:
+          - server:*
+          - agent:*

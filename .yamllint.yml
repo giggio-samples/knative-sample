@@ -1,0 +1,17 @@
+---
+extends: default
+
+rules:
+  document-start: disable
+  new-lines: disable
+  line-length: disable
+  quoted-strings:
+    required: only-when-needed
+    quote-type: double
+  comments:
+    require-starting-space: true
+    ignore-shebangs: true
+    min-spaces-from-content: 1
+
+ignore: |
+  data

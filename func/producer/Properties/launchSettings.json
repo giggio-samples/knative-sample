@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "MemoryBroker-Interactive": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "commandLineArgs": "--ip broker-ingress.knativetest.localhost --subject \"Test from Memory Broker\""
+    },
+  }
+}

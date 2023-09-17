@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ContainerRepository>registry.knativetest.localhost:5000/consumer</ContainerRepository>
+    <ContainerImageTag>latest</ContainerImageTag>
+    <SelfContained>true</SelfContained>
+    <PublishAot>true</PublishAot>
+    <PublishSingleFile Condition="'$(PublishAot)'=='false'">true</PublishSingleFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>None</DebugType>
+    <DebugSymbols>False</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CloudNative.CloudEvents.AspNetCore" Version="2.7.1" />
+    <!-- CloudNative.CloudEvents.SystemTextJson is issuing AOT and trim warnings. See: https://github.com/cloudevents/sdk-csharp/issues/272 -->
+    <PackageReference Include="CloudNative.CloudEvents.SystemTextJson" Version="2.7.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="consumer" />
+  </ItemGroup>
+</Project>

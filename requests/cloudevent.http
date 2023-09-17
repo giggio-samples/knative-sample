@@ -1,0 +1,14 @@
+POST http://broker-ingress.knativetest.localhost/consumerns/my-broker
+content-type: application/cloudevents+json
+
+{
+    "specversion": "1.0",
+    "type": "producer1",
+    "source": "https://vscode",
+    "time": "{{$datetime iso8601}}",
+    "datacontenttype": "application/json",
+    "id": "{{$guid}}",
+    "data": {
+        "Value": "Hello world!"
+    }
+}

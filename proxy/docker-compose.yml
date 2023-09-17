@@ -1,0 +1,24 @@
+version: '3.9'
+name: 'k3d-proxy'
+
+services:
+  k3d-proxy:
+    image: nginx:latest
+    container_name: k3d-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-ingress.conf:/etc/nginx/templates/nginx-ingress.conf.template:ro
+    ports:
+      - "80:80"
+    networks:
+      - k3d-knativetest
+      - external
+    environment:
+      TRAEFIK_IP: ${TRAEFIK_IP?Traefik ip is required}
+      KNATIVE_IP: ${KNATIVE_IP?Knative ip is required}
+
+networks:
+  k3d-knativetest:
+    external: true
+  external:
+
